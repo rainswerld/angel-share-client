@@ -10,3 +10,17 @@ export const allWhiskey = user => {
     }
   })
 }
+
+export const createWhiskey = (title, notes, user) => {
+  return axios({
+    url: apiUrl + '/whiskeys',
+    method: 'POST',
+    header: {
+      'Authorization': `Token token=${user.token}`
+    },
+    whiskey: {
+      title: title,
+      notes: notes
+    }
+  })
+}

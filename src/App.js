@@ -10,6 +10,7 @@ import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import Whiskey from './components/Whiskey/Whiskeys'
+import WhiskeyForm from './components/Whiskey/WhiskeyForm'
 
 class App extends Component {
   constructor () {
@@ -60,8 +61,11 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
-          <AuthenticatedRoute user={user} path='/whiskeys' render={() => (
+          <AuthenticatedRoute user={user} exact path='/' render={() => (
             <Whiskey user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/add-whiskeys' render={() => (
+            <WhiskeyForm user={user}/>
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />

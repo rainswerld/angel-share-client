@@ -3,6 +3,7 @@ import { allWhiskey } from '../../api/whiskey'
 
 const Whiskey = props => {
   const [whiskeys, setWhiskeys] = useState([])
+
   useEffect(() => {
     allWhiskey(props.user)
       .then(res => setWhiskeys(res.data.whiskeys))

@@ -1,16 +1,23 @@
-import React from 'react'
-// import { allWhiskey } from '../../api/whiskey'
+import React, { useState, useEffect } from 'react'
+import { allWhiskey } from '../../api/whiskey'
 
 const Whiskey = props => {
-  // const [whiskeys, setWhiskeys] = useState('')
-  console.log('these are props ', props)
-  // useEffect(() => {
-  //   allWhiskey(props.user)
-  //     .then(res => console.log(res))
-  // }, [])
+  const [whiskeys, setWhiskeys] = useState([])
+  useEffect(() => {
+    allWhiskey(props.user)
+      .then(res => setWhiskeys(res.data.whiskeys))
+      .catch(console.error)
+  }, [])
+
+  const allWhiskeys = whiskeys.map(whiskey => (
+    <div key={whiskey.id}>
+      <h1>{whiskey.title}</h1>
+      <p>{whiskey.notes}</p>
+    </div>
+  ))
 
   return (
-    <h1>Hello World</h1>
+    <h1>{allWhiskeys}</h1>
   )
 }
 
